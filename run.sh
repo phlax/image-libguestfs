@@ -1,11 +1,11 @@
 #!/bin/bash -e
 
 NAME="$1"
-TARGET="${2:-/home/pyuser}"
+COMMIT_HASH="$2"
+TARGET="${3:-/home/pyuser}"
 
 . ./install
 
-COMMIT_HASH=$(git rev-parse HEAD)
 TARGET_FILENAME="${COMMIT_HASH}_${NAME}.qcow2"
 TARGET_FILE="${TARGET}/${TARGET_FILENAME}"
 TARGET_HASH_FILE="${TARGET}/hash"

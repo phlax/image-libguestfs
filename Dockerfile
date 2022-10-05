@@ -6,7 +6,6 @@ USER root
 
 RUN apt-get update -qq \
     && apt-get install -y -qq --no-install-recommends \
-               git \
                libguestfs-tools \
                linux-image-generic \
     && mkdir -p /workspace \
