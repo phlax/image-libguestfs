@@ -18,6 +18,7 @@ if [[ -n "$RESIZE" ]]; then
     RESIZE_ARGS=(
         --run-command 'growpart /dev/sda 1'
         --run-command 'resize2fs /dev/sda1')
+    ls -lh src.qcow2
 fi
 
 if [[ -n "$DEBUG" ]]; then
@@ -31,10 +32,12 @@ virt-customize \
     "${RESIZE_ARGS[@]}" \
     "${VIRT_CUSTOMIZE_ARGS[@]}" \
     --run "/cleanup.sh"
+ls -lh src.qcow2
 
 echo "Squashing qcow2: ${TARGET_FILE} ..."
 # qemu-img convert -O qcow2 -c src.qcow2 "$TARGET_FILE"
 
 virt-sparsify --compress src.qcow2  "$TARGET_FILE"
+ls -lh "$TARGET_FILE"
 
 rm src.qcow2
